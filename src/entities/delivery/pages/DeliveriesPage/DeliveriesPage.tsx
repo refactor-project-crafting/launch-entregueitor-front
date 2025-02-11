@@ -1,5 +1,15 @@
+import DeliveriesList from "../../components/DeliveriesList/DeliveriesList";
+import { useDeliveriesQuery } from "../../queries/useDeliveriesQuery";
+
 const DeliveriesPage: React.FC = () => {
-  return <h1>Deliveriiiiiirl</h1>;
+  const { data } = useDeliveriesQuery();
+
+  return (
+    <>
+      <h2>Deliveries</h2>
+      {data && <DeliveriesList deliveries={data} />}
+    </>
+  );
 };
 
 export default DeliveriesPage;

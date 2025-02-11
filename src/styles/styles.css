@@ -37,3 +37,77 @@ a {
     text-decoration: none;
   }
 }
+
+button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: transparent;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+/* Tanstack Query Devtools */
+.tsqd-parent-container {
+  position: absolute;
+}
+
+.signin,
+.signout {
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.signin {
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  padding: 10px 20px;
+
+  &:hover,
+  &:focus {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+  }
+}
+
+.signout {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 5px 10px;
+  font-size: 0.8rem;
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+  }
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(
+    100vh - var(--height-header) - var(--height-footer) -
+      var(--page-padding-top) - var(--page-padding-bottom)
+  );
+
+  @media (min-width: 845px) {
+    margin-left: -300px;
+    height: calc(
+      100vh - var(--height-header-desktop) - var(--height-footer) -
+        var(--page-padding-top) - var(--page-padding-bottom)
+    );
+  }
+
+  div {
+    text-align: center;
+  }
+}

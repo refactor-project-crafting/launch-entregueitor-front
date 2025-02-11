@@ -7,12 +7,15 @@ import AppRouter from "./router/AppRouter";
 import queryClient from "./client/queryClient";
 import "@fontsource-variable/roboto-flex/index.css";
 import "./styles/styles.css";
+import AuthContextProvider from "./auth/AuthContext/AuthContextProvider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <AppRouter />
+        <AuthContextProvider>
+          <AppRouter />
+        </AuthContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools />
     </QueryClientProvider>

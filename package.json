@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fontsource-variable/roboto-flex": "^5.1.1",
+    "@supabase/supabase-js": "^2.48.1",
     "@tanstack/react-query": "^5.66.0",
     "@tanstack/react-query-devtools": "^5.66.0",
     "axios": "^1.7.9",

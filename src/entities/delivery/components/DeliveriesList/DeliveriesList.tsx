@@ -8,7 +8,7 @@ const DeliveriesList: React.FC<DeliveriesListProps> = ({ deliveries }) => {
   return (
     <>
       <h2>listado</h2>
-      {deliveries}
+      {deliveries.map((delivery) => delivery.id)}
     </>
   );
 };

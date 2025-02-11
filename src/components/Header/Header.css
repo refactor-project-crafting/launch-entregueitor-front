@@ -1,0 +1,33 @@
+.main-header {
+  position: fixed;
+  left: 5%;
+  right: 5%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: var(--height-header);
+  z-index: 2;
+
+  @media (min-width: 845px) {
+    width: var(--width-container);
+    height: var(--height-header-desktop);
+    left: initial;
+    right: initial;
+    flex-direction: row;
+    gap: 20px;
+    text-align: left;
+  }
+}
+
+.main-title {
+  font-size: 1.2rem;
+  font-weight: normal;
+  display: none;
+
+  @media (min-width: 1300px) {
+    display: block;
+  }
+}

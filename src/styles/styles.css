@@ -1,0 +1,39 @@
+:root {
+  --color-primary: #211f1f;
+  --color-secondary: #fff;
+  --color-brand: #212344;
+  --color-brand-accent: #b6203a;
+  --font-family-text: "Roboto Flex Variable", sans-serif;
+  --height-header: 100px;
+  --height-header-desktop: 80px;
+  --height-footer: 80px;
+  --width-container: 1200px;
+  --page-padding-top: 20px;
+  --page-padding-bottom: 40px;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-text);
+  margin: 0;
+  min-height: 100vh;
+  line-height: 1.75;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #212344;
+}
+
+a {
+  color: var(--color-brand-accent);
+
+  &:hover {
+    text-decoration: none;
+  }
+}

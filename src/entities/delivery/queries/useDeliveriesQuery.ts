@@ -3,7 +3,7 @@ import { axiosInstance } from "../../../client/axios";
 import { Delivery } from "../types";
 import { supabase } from "../../../auth/supabase/supabase";
 
-export const useDeliveriesQuery = () => {
+export const useDeliveriesQuery = (challenge: number) => {
   return useQuery({
     queryKey: ["deliveries"],
     queryFn: async () => {
@@ -12,7 +12,7 @@ export const useDeliveriesQuery = () => {
 
       const { data } = await axiosInstance.get<{
         deliveries: Delivery[];
-      }>("/deliveries", {
+      }>(`/deliveries/${challenge}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,

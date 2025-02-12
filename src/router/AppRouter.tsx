@@ -8,7 +8,11 @@ const AppRouter: React.FC = () => {
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Navigate to="/deliveries" />} />
-        <Route path="deliveries" element={<DeliveriesPage />} />
+        <Route path="deliveries/:challenge" element={<DeliveriesPage />} />
+        <Route
+          path="deliveries"
+          element={<Navigate to="/deliveries/challenge-1" />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

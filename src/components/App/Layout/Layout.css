@@ -1,14 +1,16 @@
 .container {
   max-width: var(--width-container);
+  padding-left: 20px;
   width: 90%;
   margin: 0 auto;
+
+  &:is(#root > *) {
+    padding-top: var(--height-header-desktop);
+    padding-bottom: var(--page-padding-bottom);
+  }
 }
 
 .main-content {
-  padding-top: var(--height-header-desktop);
-  padding-bottom: var(--page-padding-bottom);
-  padding-left: 20px;
-
   @media (min-width: 845px) {
     margin-left: 200px;
   }

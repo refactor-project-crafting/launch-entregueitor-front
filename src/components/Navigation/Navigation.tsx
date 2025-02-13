@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 import "./Navigation.css";
 import { useAuthContext } from "../../auth/AuthContext/useAuthContext";
 
@@ -18,11 +18,14 @@ const Navigation: React.FC = () => {
                 : ""
             }`}
           >
-            <Link to={`/deliveries/challenge-${challengeNumber}`}>
+            <NavLink to={`/deliveries/challenge-${challengeNumber}`}>
               {challengeNumber}
-            </Link>
+            </NavLink>
           </li>
         ))}
+        <li className="main-navigation__text">
+          <NavLink to="/new-delivery">Entregar</NavLink>
+        </li>
       </ul>
     </nav>
   );

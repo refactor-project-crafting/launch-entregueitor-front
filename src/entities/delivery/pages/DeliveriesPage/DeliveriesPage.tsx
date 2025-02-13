@@ -17,7 +17,7 @@ const DeliveriesPage: React.FC = () => {
 
   return (
     <>
-      <h2>Deliveries</h2>
+      <h2>Entregas reto {challengeNumber}</h2>
       {data && <DeliveriesList deliveries={data} />}
     </>
   );

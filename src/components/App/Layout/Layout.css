@@ -9,13 +9,3 @@
     padding-bottom: var(--page-padding-bottom);
   }
 }
-
-.main-content {
-  @media (min-width: 845px) {
-    margin-left: 200px;
-  }
-
-  @media (min-width: 1000px) {
-    margin-left: 300px;
-  }
-}

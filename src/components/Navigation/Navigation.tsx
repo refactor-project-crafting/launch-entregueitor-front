@@ -23,11 +23,6 @@ const Navigation: React.FC = () => {
             </NavLink>
           </li>
         ))}
-        <li className="main-navigation__text">
-          <NavLink to="/deliveries/new?challenge=2&position=1">
-            Entregar
-          </NavLink>
-        </li>
       </ul>
     </nav>
   );

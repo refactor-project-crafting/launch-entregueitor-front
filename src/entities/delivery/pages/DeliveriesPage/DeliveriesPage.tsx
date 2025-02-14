@@ -1,17 +1,20 @@
 import { useParams } from "react-router";
 import DeliveriesList from "../../components/DeliveriesList/DeliveriesList";
 import { useDeliveriesQuery } from "../../queries/useDeliveriesQuery";
+import useExercisesQuery from "../../../exercise/queries/useExercisesQuery";
+import ExercisesList from "../../../exercise/components/ExercisesList/ExercisesList";
 
 const DeliveriesPage: React.FC = () => {
   const { challenge } = useParams<{ challenge: string }>();
   const challengeNumber = Number(challenge?.split("-")[1]);
 
-  const { data } = useDeliveriesQuery(challengeNumber);
+  const { data: exercises } = useExercisesQuery(challengeNumber);
+  const { data: deliveries } = useDeliveriesQuery(challengeNumber);
 
   return (
     <>
       <h2>Entregas reto {challengeNumber}</h2>
-      {data && <DeliveriesList deliveries={data} />}
+      {exercises && <ExercisesList exercises={exercises} />}
     </>
   );
 };

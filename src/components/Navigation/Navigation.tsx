@@ -24,7 +24,9 @@ const Navigation: React.FC = () => {
           </li>
         ))}
         <li className="main-navigation__text">
-          <NavLink to="/new-delivery">Entregar</NavLink>
+          <NavLink to="/deliveries/new?challenge=2&position=1">
+            Entregar
+          </NavLink>
         </li>
       </ul>
     </nav>

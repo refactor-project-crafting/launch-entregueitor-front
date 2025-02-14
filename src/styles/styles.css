@@ -38,6 +38,11 @@ a {
   }
 }
 
+input,
+textarea {
+  font: inherit;
+}
+
 button {
   cursor: pointer;
   font: inherit;

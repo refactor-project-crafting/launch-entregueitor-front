@@ -1,5 +1,5 @@
 import { Exercise } from "../../types";
-import ExerciseCard from "../Exercise/Exercise";
+import ExerciseCard from "../ExerciseCard/ExerciseCard";
 import "./ExercisesList.css";
 
 interface ExercisesListProps {

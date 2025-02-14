@@ -1,19 +1,20 @@
 import { useState } from "react";
+import { UrlDeliveryFormData } from "../../types";
 import "./NewDeliveryForm.css";
 
-export interface DeliveryData {
-  text: string;
+interface NewUrlDeliveryFormProps {
+  onSubmit: (deliveryData: UrlDeliveryFormData) => void;
 }
 
-interface NewDeliveryFormProps {
-  onSubmit: (deliveryData: DeliveryData) => void;
-}
-
-const NewDeliveryForm: React.FC<NewDeliveryFormProps> = ({ onSubmit }) => {
-  const [deliveryData, setDeliveryData] = useState<DeliveryData>({ text: "" });
+const NewUrlDeliveryForm: React.FC<NewUrlDeliveryFormProps> = ({
+  onSubmit,
+}) => {
+  const [deliveryData, setDeliveryData] = useState<UrlDeliveryFormData>({
+    url: "",
+  });
 
   const changeDeliveryData = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     setDeliveryData((deliveryData) => ({
       ...deliveryData,
@@ -30,23 +31,22 @@ const NewDeliveryForm: React.FC<NewDeliveryFormProps> = ({ onSubmit }) => {
   return (
     <form className="form" onSubmit={submitForm}>
       <div className="form__group">
-        <label htmlFor="text">Respuesta:</label>
-        <textarea
-          rows={5}
-          cols={80}
+        <label htmlFor="url">Respuesta:</label>
+        <input
+          type="url"
           className="form__control"
-          id="text"
-          value={deliveryData.text}
+          id="url"
+          value={deliveryData.url}
           onChange={changeDeliveryData}
         />
       </div>
       <div className="form__group">
         <button className="button button--solid" type="submit">
-          Entregar
+          Enviar
         </button>
       </div>
     </form>
   );
 };
 
-export default NewDeliveryForm;
+export default NewUrlDeliveryForm;

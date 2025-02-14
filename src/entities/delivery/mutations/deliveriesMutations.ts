@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
-import { DeliveryData } from "../components/NewDeliveryForm/NewDeliveryForm";
 import { fetchWithAuth } from "../../../client/axios";
-import { DeliveryType } from "../types";
+import { DeliveryType, FullDeliveryFormData } from "../types";
 import { Id } from "../../../types";
+import queryClient from "../../../client/queryClient";
 
 export const useAddDeliveryMutation = () => {
   return useMutation({
@@ -13,7 +13,7 @@ export const useAddDeliveryMutation = () => {
       exerciseId,
       type,
     }: {
-      deliveryData: DeliveryData;
+      deliveryData: FullDeliveryFormData;
       challenge: number;
       position: number;
       exerciseId: Id;
@@ -24,6 +24,11 @@ export const useAddDeliveryMutation = () => {
         "post",
         deliveryData
       );
+    },
+    onSuccess: (_data, { challenge, exerciseId }) => {
+      queryClient.invalidateQueries({
+        queryKey: ["deliveries", challenge, exerciseId],
+      });
     },
   });
 };

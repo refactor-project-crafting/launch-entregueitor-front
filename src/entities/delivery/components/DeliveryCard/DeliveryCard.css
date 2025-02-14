@@ -1,0 +1,13 @@
+.delivery pre {
+  font: inherit;
+}
+
+.delivery__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.caret-open {
+  transform: rotate(180deg);
+}

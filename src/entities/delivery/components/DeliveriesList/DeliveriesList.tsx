@@ -1,4 +1,6 @@
-import { Delivery } from "../../types";
+import { Delivery, FullDelivery } from "../../types";
+import DeliveryCard from "../DeliveryCard/DeliveryCard";
+import "./DeliveriesList.css";
 
 interface DeliveriesListProps {
   deliveries: Delivery[];
@@ -6,10 +8,13 @@ interface DeliveriesListProps {
 
 const DeliveriesList: React.FC<DeliveriesListProps> = ({ deliveries }) => {
   return (
-    <>
-      <h2>listado</h2>
-      {deliveries.map((delivery) => delivery.exerciseName)}
-    </>
+    <ul className="deliveries">
+      {deliveries.map((delivery) => (
+        <li key={delivery.id}>
+          <DeliveryCard delivery={delivery as FullDelivery} />
+        </li>
+      ))}
+    </ul>
   );
 };
 

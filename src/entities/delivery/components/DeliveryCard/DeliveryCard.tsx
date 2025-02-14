@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import { FullDelivery } from "../../types";
 import "./DeliveryCard.css";
-import { Link } from "react-router";
 
 interface DeliveryCardProps {
   delivery: FullDelivery;
@@ -29,6 +29,15 @@ const DeliveryCard: React.FC<DeliveryCardProps> = ({ delivery }) => {
             URL entregada:{" "}
             <Link to={delivery.url} target="_blank">
               {delivery.url}
+            </Link>
+          </>
+        );
+      case "file":
+        return (
+          <>
+            Archivo:{" "}
+            <Link to={delivery.filename} target="_blank">
+              ver
             </Link>
           </>
         );

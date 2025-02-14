@@ -1,43 +1,45 @@
 import { useState } from "react";
-import { FileDeliveryFormData } from "../../types";
 import "./NewDeliveryForm.css";
 
 interface NewFileDeliveryFormProps {
-  onSubmit: (deliveryData: FileDeliveryFormData) => void;
+  onSubmit: (deliveryData: FormData) => void;
 }
 
 const NewFileDeliveryForm: React.FC<NewFileDeliveryFormProps> = ({
   onSubmit,
 }) => {
-  const [deliveryData, setDeliveryData] = useState<FileDeliveryFormData>({
-    filename: "",
-  });
+  const [file, setFile] = useState<File | null>(null);
 
-  const changeDeliveryData = (
-    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
-    setDeliveryData((deliveryData) => ({
-      ...deliveryData,
-      [event.target.id]: event.target.value,
-    }));
+  const changeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = event.target.files!;
+
+    if (selectedFiles.length > 0) {
+      setFile(selectedFiles[0]);
+    }
   };
 
   const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    onSubmit(deliveryData);
+    if (!file) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    onSubmit(formData);
   };
 
   return (
     <form className="form" onSubmit={submitForm}>
       <div className="form__group">
-        <label htmlFor="url">Respuesta:</label>
+        <label htmlFor="file">Archivo:</label>
         <input
           type="file"
           className="form__control"
-          id="filename"
-          value={deliveryData.filename}
-          onChange={changeDeliveryData}
+          id="file"
+          onChange={changeFile}
         />
       </div>
       <div className="form__group">

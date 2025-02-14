@@ -1,6 +1,9 @@
 import React from "react";
 import NewTextDeliveryForm from "../NewDeliveryForm/NewTextDeliveryForm";
-import { useAddDeliveryMutation } from "../../mutations/deliveriesMutations";
+import {
+  useAddDeliveryMutation,
+  useAddFileDeliveryMutation,
+} from "../../mutations/deliveriesMutations";
 import { Exercise } from "../../../exercise/types";
 import { FullDeliveryFormData } from "../../types";
 import "./NewDelivery.css";
@@ -14,10 +17,23 @@ interface NewDeliveryProps {
 
 const NewDelivery: React.FC<NewDeliveryProps> = ({ exercise, onCreated }) => {
   const { mutateAsync } = useAddDeliveryMutation();
+  const { mutateAsync: fileMutateAsync } = useAddFileDeliveryMutation();
 
   const createNewDelivery = async (deliveryData: FullDeliveryFormData) => {
     await mutateAsync({
       deliveryData,
+      type: exercise.type,
+      challenge: exercise.challenge,
+      position: exercise.position,
+      exerciseId: exercise.id,
+    });
+
+    onCreated();
+  };
+
+  const createNewFileDelivery = async (formData: FormData) => {
+    await fileMutateAsync({
+      formData,
       type: exercise.type,
       challenge: exercise.challenge,
       position: exercise.position,
@@ -34,7 +50,7 @@ const NewDelivery: React.FC<NewDeliveryProps> = ({ exercise, onCreated }) => {
       case "url":
         return <NewUrlDeliveryForm onSubmit={createNewDelivery} />;
       case "file":
-        return <NewFileDeliveryForm onSubmit={createNewDelivery} />;
+        return <NewFileDeliveryForm onSubmit={createNewFileDelivery} />;
     }
   };
 

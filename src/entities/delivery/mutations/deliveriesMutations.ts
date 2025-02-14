@@ -32,3 +32,32 @@ export const useAddDeliveryMutation = () => {
     },
   });
 };
+
+export const useAddFileDeliveryMutation = () => {
+  return useMutation({
+    mutationFn: async ({
+      formData,
+      challenge,
+      position,
+      exerciseId,
+      type,
+    }: {
+      formData: FormData;
+      challenge: number;
+      position: number;
+      exerciseId: Id;
+      type: DeliveryType;
+    }) => {
+      await fetchWithAuth(
+        `/deliveries/file/${challenge}?type=${type}&position=${position}&exerciseId=${exerciseId}`,
+        "post",
+        formData
+      );
+    },
+    onSuccess: (_data, { challenge, exerciseId }) => {
+      queryClient.invalidateQueries({
+        queryKey: ["deliveries", challenge, exerciseId],
+      });
+    },
+  });
+};

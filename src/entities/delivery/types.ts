@@ -31,9 +31,5 @@ export type FullDelivery = TextDelivery | UrlDelivery | FileDelivery;
 
 export type TextDeliveryFormData = Pick<TextDelivery, "text">;
 export type UrlDeliveryFormData = Pick<UrlDelivery, "url">;
-export type FileDeliveryFormData = Pick<FileDelivery, "filename">;
 
-export type FullDeliveryFormData =
-  | TextDeliveryFormData
-  | UrlDeliveryFormData
-  | FileDeliveryFormData;
+export type FullDeliveryFormData = TextDeliveryFormData | UrlDeliveryFormData;

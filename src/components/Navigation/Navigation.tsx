@@ -18,9 +18,18 @@ const Navigation: React.FC = () => {
                 : ""
             }`}
           >
-            <NavLink to={`/deliveries/challenge-${challengeNumber}`}>
-              {challengeNumber}
-            </NavLink>
+            {challengeNumber <= userMaxChallenge ? (
+              <NavLink
+                to={`/deliveries/challenge-${challengeNumber}`}
+                className="challenge-number"
+              >
+                {challengeNumber}
+              </NavLink>
+            ) : (
+              <button className="challenge-number" disabled>
+                {challengeNumber}
+              </button>
+            )}
           </li>
         ))}
       </ul>

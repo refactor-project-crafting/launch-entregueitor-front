@@ -1,4 +1,5 @@
 import { createClient, SupabaseClient, User } from "@supabase/supabase-js";
+import flagsmith from "flagsmith";
 
 export const supabase: SupabaseClient = createClient(
   import.meta.env.VITE_SUPABASE_URL,
@@ -32,5 +33,6 @@ export const getAuthenticatedUser = async (): Promise<User | null> => {
 };
 
 export const signOut = async () => {
+  await flagsmith.logout();
   await supabase.auth.signOut();
 };

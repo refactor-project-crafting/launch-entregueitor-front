@@ -31,7 +31,7 @@ const NewUrlDeliveryForm: React.FC<NewUrlDeliveryFormProps> = ({
   return (
     <form className="form" onSubmit={submitForm}>
       <div className="form__group">
-        <label htmlFor="url">Respuesta:</label>
+        <label htmlFor="url">URL:</label>
         <input
           type="url"
           className="form__control"

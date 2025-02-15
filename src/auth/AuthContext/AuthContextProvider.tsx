@@ -14,10 +14,7 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const debug = useConsoleDebug();
   const flagsmith = useFlagsmith();
   const [user, setUser] = useState<User | null>(null);
-
-  const publishedChallengeNumber = Number(
-    flagsmith.getValue("challenge-number")
-  );
+  const [publishedChallengeNumber, setPublishedChallengeNumber] = useState(0);
 
   const login = async () => {
     await signInWithGitHub();
@@ -36,6 +33,17 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
       setUser(user);
     })();
   }, [debug]);
+
+  useEffect(() => {
+    (async () => {
+      if (user?.user_metadata.user_name) {
+        await flagsmith.identify(user.user_metadata.user_name);
+        setPublishedChallengeNumber(
+          Number(flagsmith.getValue("challenge-number"))
+        );
+      }
+    })();
+  }, [flagsmith, user]);
 
   const contextValue: AuthContextStructure = useMemo(
     () => ({

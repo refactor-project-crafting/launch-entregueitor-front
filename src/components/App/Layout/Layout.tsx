@@ -4,13 +4,16 @@ import Protected from "../../../auth/components/Protected/Protected";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import Navigation from "../../Navigation/Navigation";
+import { useAuthContext } from "../../../auth/AuthContext/useAuthContext";
 
 const Layout: React.FC = () => {
+  const { isLoggedIn } = useAuthContext();
+
   return (
     <>
       <div className="container">
         <Header />
-        <Navigation />
+        {isLoggedIn && <Navigation />}
         <div className="main-block">
           <main className="main-content">
             <Protected>

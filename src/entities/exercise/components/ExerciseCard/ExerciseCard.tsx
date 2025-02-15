@@ -33,6 +33,7 @@ const ExerciseCard: React.FC<ExerciseProps> = ({ exercise }) => {
           Entregar
         </button>
       </header>
+      <p className="exercise__comments">{exercise.comments}</p>
       {deliveries && <DeliveriesList deliveries={deliveries} />}
       {isFormOpen && <NewDelivery exercise={exercise} onCreated={closeForm} />}
     </div>

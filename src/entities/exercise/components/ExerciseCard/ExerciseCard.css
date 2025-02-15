@@ -10,5 +10,9 @@
 }
 
 .exercise__name {
+  margin: 0;
+}
+
+.exercise__comments {
   margin-top: 0;
 }

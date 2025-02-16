@@ -50,6 +50,10 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
       isLoggedIn: !!user?.id,
       username: user?.user_metadata.user_name ?? "",
       userMaxChallenge: publishedChallengeNumber,
+      role:
+        user?.user_metadata.user_name === "the-refactor-project"
+          ? "admin"
+          : "student",
       login,
       logout,
     }),

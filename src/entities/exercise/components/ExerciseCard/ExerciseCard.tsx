@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDeliveriesQuery } from "../../../delivery/queries/useDeliveriesQuery";
 import DeliveriesList from "../../../delivery/components/DeliveriesList/DeliveriesList";
 import "./ExerciseCard.css";
+import { useSearchParams } from "react-router";
 
 interface ExerciseProps {
   exercise: Exercise;
@@ -12,9 +13,14 @@ interface ExerciseProps {
 const ExerciseCard: React.FC<ExerciseProps> = ({ exercise }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
+  const [searchParams] = useSearchParams();
+
+  const student = searchParams.get("student");
+
   const { data: deliveries } = useDeliveriesQuery(
     exercise.challenge,
-    exercise.id
+    exercise.id,
+    student
   );
 
   const toggleFormOpen = () => {

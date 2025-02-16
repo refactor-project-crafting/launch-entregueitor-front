@@ -1,13 +1,17 @@
 import { Outlet } from "react-router";
-import "./Layout.css";
 import Protected from "../../../auth/components/Protected/Protected";
 import Footer from "../../Footer/Footer";
 import Header from "../../Header/Header";
 import Navigation from "../../Navigation/Navigation";
 import { useAuthContext } from "../../../auth/AuthContext/useAuthContext";
+import Loading from "../../Loading/Loading";
+import "./Layout.css";
+import { useIsFetching, useIsMutating } from "@tanstack/react-query";
 
 const Layout: React.FC = () => {
   const { isLoggedIn } = useAuthContext();
+  const isFetching = useIsFetching();
+  const isMutating = useIsMutating();
 
   return (
     <>
@@ -23,6 +27,7 @@ const Layout: React.FC = () => {
         </div>
       </div>
       <Footer />
+      {(isFetching || isMutating) && <Loading />}
     </>
   );
 };

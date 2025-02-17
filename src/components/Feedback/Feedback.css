@@ -1,0 +1,23 @@
+.feedback-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 9;
+}
+
+.feedback {
+  padding: 15px;
+  border: 1px solid #000;
+}
+
+.feedback--ok {
+  background-color: #fff;
+}
+
+.feedback--error {
+  background-color: rgb(154, 17, 17);
+  color: #fff;
+}

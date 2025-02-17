@@ -11,6 +11,7 @@ import flagsmith from "./auth/flagsmith";
 import "@fontsource-variable/roboto-flex/index.css";
 import "./styles/styles.css";
 import AdminContextProvider from "./admin/context/AdminContextProvider";
+import UiContextProvider from "./ui/context/UiContextProvider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -19,7 +20,9 @@ createRoot(document.getElementById("root")!).render(
         <BrowserRouter>
           <AuthContextProvider>
             <AdminContextProvider>
-              <AppRouter />
+              <UiContextProvider>
+                <AppRouter />
+              </UiContextProvider>
             </AdminContextProvider>
           </AuthContextProvider>
         </BrowserRouter>

@@ -3,6 +3,7 @@ import { fetchWithAuth } from "../../../client/axios";
 import { DeliveryType, FullDeliveryFormData } from "../types";
 import { Id } from "../../../types";
 import queryClient from "../../../client/queryClient";
+import useUiContext from "../../../ui/context/useUiContext";
 
 export const useAddDeliveryMutation = () => {
   return useMutation({
@@ -34,6 +35,8 @@ export const useAddDeliveryMutation = () => {
 };
 
 export const useAddFileDeliveryMutation = () => {
+  const { setFeedbackMessage } = useUiContext();
+
   return useMutation({
     mutationFn: async ({
       formData,
@@ -58,6 +61,11 @@ export const useAddFileDeliveryMutation = () => {
       queryClient.invalidateQueries({
         queryKey: ["deliveries", challenge, exerciseId],
       });
+
+      setFeedbackMessage("Entrega enviada 👌");
+    },
+    onError: () => {
+      setFeedbackMessage("Ha ocurrido un error 😔", true);
     },
   });
 };

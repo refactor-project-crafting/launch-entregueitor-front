@@ -5,13 +5,17 @@ import Header from "../../Header/Header";
 import Navigation from "../../Navigation/Navigation";
 import { useAuthContext } from "../../../auth/AuthContext/useAuthContext";
 import Loading from "../../Loading/Loading";
-import "./Layout.css";
 import { useIsFetching, useIsMutating } from "@tanstack/react-query";
+import useUiContext from "../../../ui/context/useUiContext";
+import Feedback from "../../Feedback/Feedback";
+import "./Layout.css";
 
 const Layout: React.FC = () => {
   const { isLoggedIn } = useAuthContext();
   const isFetching = useIsFetching();
   const isMutating = useIsMutating();
+
+  const { isShowingFeedback } = useUiContext();
 
   return (
     <>
@@ -27,7 +31,8 @@ const Layout: React.FC = () => {
         </div>
       </div>
       <Footer />
-      {(isFetching || isMutating) && <Loading />}
+      {isShowingFeedback && <Feedback />}
+      {(isFetching > 0 || isMutating > 0) && <Loading />}
     </>
   );
 };

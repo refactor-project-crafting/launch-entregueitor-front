@@ -1,12 +1,11 @@
 import { Link, NavLink, useParams, useSearchParams } from "react-router";
 import { useAuthContext } from "../../auth/AuthContext/useAuthContext";
+import useAdminContext from "../../admin/context/useAdminContext";
 import "./Navigation.css";
 
 const Navigation: React.FC = () => {
   const challengeNumbers = [1, 2, 3, 4] as const;
-  const students = import.meta.env.VITE_STUDENTS.split(",").map((student) =>
-    student.split("||")
-  );
+  const { students } = useAdminContext();
 
   const [searchParams] = useSearchParams();
 
@@ -22,11 +21,11 @@ const Navigation: React.FC = () => {
       {role === "admin" && (
         <ul>
           {students.map((student) => (
-            <li key={student[1]}>
+            <li key={student.id}>
               <Link
-                to={`/deliveries/challenge-${challengeNumber}?student=${student[1]}`}
+                to={`/deliveries/challenge-${challengeNumber}?student=${student.id}`}
               >
-                {student[0]}
+                {student.name ?? student.username.split("@")[0]}
               </Link>
             </li>
           ))}

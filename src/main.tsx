@@ -10,6 +10,7 @@ import { FlagsmithProvider } from "flagsmith/react";
 import flagsmith from "./auth/flagsmith";
 import "@fontsource-variable/roboto-flex/index.css";
 import "./styles/styles.css";
+import AdminContextProvider from "./admin/context/AdminContextProvider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -17,7 +18,9 @@ createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <AuthContextProvider>
-            <AppRouter />
+            <AdminContextProvider>
+              <AppRouter />
+            </AdminContextProvider>
           </AuthContextProvider>
         </BrowserRouter>
         <ReactQueryDevtools />

@@ -33,14 +33,7 @@ const Navigation: React.FC = () => {
       )}
       <ul>
         {challengeNumbers.map((challengeNumber) => (
-          <li
-            key={challengeNumber}
-            className={`main-navigation__number${
-              challengeNumber < userMaxChallenge && role === "student"
-                ? " main-navigation__number--passed"
-                : ""
-            }`}
-          >
+          <li key={challengeNumber} className="main-navigation__number">
             {challengeNumber <= userMaxChallenge || role === "admin" ? (
               <NavLink
                 to={`/deliveries/challenge-${challengeNumber}${
